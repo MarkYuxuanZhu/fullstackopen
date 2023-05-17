@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const app = express()
 
 morgan.token('body', 
@@ -15,6 +16,8 @@ logMiddleWare = (req, res, next) => {
 }
 
 app.use(express.json())
+app.use(express.static('frontend'))
+app.use(cors())
 app.use(logMiddleWare)
 
 
@@ -45,6 +48,7 @@ let contacts = [
 
 //http://localhost:3001/api/persons
 app.get('/api/persons', (request, response) => {
+  console.log(contacts)
   response.json(contacts)
 })
 
@@ -65,6 +69,7 @@ app.post('/api/persons', (request, response) => {
 
   body.id = parseInt(Math.random() * 10000)
   contacts.push(body)
+  response.json(body)
   response.status(200).end()
 })
 
@@ -93,7 +98,7 @@ app.get('/info', (reuqest, response) => {
 
 
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
