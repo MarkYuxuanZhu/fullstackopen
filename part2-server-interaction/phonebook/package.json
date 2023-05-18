@@ -17,7 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -p3001 --watch db.json"
+    "server": "json-server -p3001 --watch db.json -H 127.0.0.1",
+    "build:ui": "rm -rf frontend && cd ../../part2-server-interaction/phonebook/ && npm run build && cp -r build ../../part3-express/phonebook/frontend",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",    
+    "logs:prod": "fly logs"
   },
   "eslintConfig": {
     "extends": [

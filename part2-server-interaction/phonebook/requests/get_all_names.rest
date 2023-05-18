@@ -1,0 +1,19 @@
+POST http://127.0.0.1:3001/persons  HTTP/1.1
+content-type: application/json
+
+{
+    "name": "dog",
+    "number": "1234123412341234"
+}
+
+###
+POST https://phonebook2333.fly.dev/api/persons  HTTP/1.1
+content-type: application/json
+
+{
+    "name": "wang!",
+    "number": "1234123412341234"
+}
+
+
+
